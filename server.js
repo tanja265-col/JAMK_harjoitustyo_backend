@@ -1,22 +1,35 @@
-// express -moduuli importataan
+// express -moduuli
 
 const express = require('express');
-//const bodyParser = require('body-parser'); // vanhentunut
+const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
 
+app.use(cors());
+
+app.use(function (req, res, next) {
+  // IE9 doesn't set headers for cross-domain ajax requests
+  if (typeof req.headers['content-type'] === 'undefined') {
+    req.headers['content-type'] = 'application/json; charset=UTF-8';
+  }
+  next();
+});
 // parse requests of content-type: application/json
-// parse requests of content-type: application/x-www-form-urlencoded
+//app.use(bodyParser.json())
 app.use(express.json());
+
+// parse requests of content-type: application/x-www-form-urlencoded
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
 
+app.use(express.text({ type: 'text/plain' }));
+
 // simple route
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Tanja´s application.' });
-  res.send('Hello');
 });
 
 // set port, listen for requests
