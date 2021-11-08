@@ -5,6 +5,7 @@ CRUD-toiminnot.
 */
 
 const db = require('../models/customer.model.js');
+const Customer = db.customers;
 
 //tietokannan käsittelymetodit olion sisässä
 const CustomerController = {
