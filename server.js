@@ -3,22 +3,8 @@
 const express = require('express');
 //const bodyParser = require('body-parser');
 const app = express();
-//const cors = require('cors');
+const cors = require('cors');
 
-//const corsOptions = {
-//  origin: 'http://localhost:8081',
-//};
-
-//app.use(cors(corsOptions));
-
-/*app.use(function (req, res, next) {
-  // IE9 doesn't set headers for cross-domain ajax requests
-  if (typeof req.headers['content-type'] === 'undefined') {
-    req.headers['content-type'] = 'application/json; charset=UTF-8';
-  }
-  next();
-});
-*/
 // parse requests of content-type: application/json
 //app.use(bodyParser.json())
 app.use(express.json());
@@ -29,10 +15,18 @@ app.use(
     extended: true,
   })
 );
+//cors avaa yhteyden palvelinsovelluksen ja asiakasfrontin välille, mihin yhteys voidaan ottaa
+// jos sijaitsevat eri palvelimilla
+const corsOptions = {
+  origin: 'http://localhost:4200', //tähän oikea osoite jos olisi oikealla palvelimella
+  optionSuccessStatus: 200, //jos onnistuua antaa tämän
+};
+//käytetään
+app.use(cors(corsOptions));
 
 // simple route
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to Tanja´s application.' });
+  res.json({ message: 'OK' });
 });
 
 // set port, listen for requests
