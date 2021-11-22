@@ -14,6 +14,8 @@ module.exports = (app) => {
   // router.post('/', authorize, Customer.controller.add);
 
   //authorize, - laitetaan muihin kuin get
+  // kaikki reitti joiden kautta voidaan muokata kanta on tällä suojattu
+  //****************** */
 
   router.post('/customers', authorize, function (req, res) {
     customers.create;
