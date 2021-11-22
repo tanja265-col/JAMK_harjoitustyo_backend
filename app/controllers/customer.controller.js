@@ -7,6 +7,8 @@ CRUD-toiminnot.
 const db = require('../models/customer.model.js');
 const Customer = db.customers;
 
+const userCon = require('../controllers/UserController'); // user-reittien kontrolleri
+
 //tietokannan käsittelymetodit olion sisässä
 const CustomerController = {
   //avainarvoparit
@@ -32,52 +34,6 @@ const CustomerController = {
     });
   },
   add: (req, res, next) => {
-    /* postmanissa (toimii tässä clientina) kirjoitetaan
-    läheteyskenttään uusi asiakas.
-    req.body:ssa saadaan backendiin lähetetty asikas.
-    Menee NewCustomer-muuttujaan eli saadusta asiaksa-olista
-    tehdään Customer- modelin mukainen ja se lisätään kantaan
-   
-
-
-    // eslint-disable-next-line new-cap
-    const NewCustomer = Customer(req.body);
-
-    NewCustomer.save((error, result) => {
-      if (error) {
-        throw error;
-      }
-      console.log('Customer added');
-      res.send('Customer added');
-    });
-  },
-  deleteCustomer: (req, res) => {
-    //findOne argumentit: hakukriteeri eli _id: vastaava id saadaan clientilta
-    //ja callback jolla saadaan tieto
-    Customer.deleteOne({ _id: req.params.id }, (error, result) => {
-      if (error) {
-        throw error;
-      }
-      res.send('customer deleted');
-    });
-  },
-  updateCustomer: (req, res) => {
-    Customer.findOneAndUpdate(
-      // eslint-disable-next-line quote-props
-      { customerNumber: req.params.scode, 'customerNumber.name': req.params.name },
-      //$-merkki viittaa edelliseen hakukriteeriin, set asettaa mitä bodysta tulee
-      { $set: { 'customerNumber.$': req.body } },
-      (error, result) => {
-        if (error) {
-          throw error;
-        }
-        res.send('Customer updated');
-      }
-    );
-  },
-  
-}
-*/
     // Create and Save a new Customer
     exports.create = (req, res) => {
       // Validate request
@@ -207,29 +163,6 @@ const CustomerController = {
       });
     };
 
-    /* ex: getProperty(myObj,'aze.xyz',0) // return myObj.aze.xyz safely
- * accepts array for property names:
- *     getProperty(myObj,['aze','xyz'],{value: null})
-
-function getProperty(obj, props, defaultValue) {
-  var res,
-    isvoid = function (x) {
-      return typeof x === 'undefined' || x === null;
-    };
-  if (!isvoid(obj)) {
-    if (isvoid(props)) props = [];
-    if (typeof props === 'string') props = props.trim().split('.');
-    if (props.constructor === Array) {
-      res =
-        props.length > 1
-          ? getProperty(obj[props.shift()], props, defaultValue)
-          : obj[props[0]];
-    }
-  }
-  return typeof res === 'undefined' ? defaultValue : res;
-
-}
- */
     module.exports = CustomerController;
   },
 };

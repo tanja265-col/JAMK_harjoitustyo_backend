@@ -17,9 +17,10 @@ app.use(
 );
 //cors avaa yhteyden palvelinsovelluksen ja asiakasfrontin välille, mihin yhteys voidaan ottaa
 // jos sijaitsevat eri palvelimilla
+//frontendin url eli mihin fronttiin voi ottaa yhteyden
 const corsOptions = {
   origin: 'http://localhost:4200', //tähän oikea osoite jos olisi oikealla palvelimella
-  optionSuccessStatus: 200, //jos onnistuua antaa tämän
+  optionSuccessStatus: 200, //jos onnistuu, antaa tämän statuskoodin
 };
 //käytetään
 app.use(cors(corsOptions));
