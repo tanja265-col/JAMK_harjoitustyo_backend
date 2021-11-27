@@ -3,7 +3,7 @@
 const express = require('express');
 //const bodyParser = require('body-parser');
 const app = express();
-const cors = require('cors');
+const cors = require('cors'); //frontin yhdistämiseen
 
 // parse requests of content-type: application/json
 //app.use(bodyParser.json())
