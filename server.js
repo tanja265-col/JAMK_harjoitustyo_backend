@@ -19,11 +19,11 @@ app.use(
 // jos sijaitsevat eri palvelimilla
 //frontendin url eli mihin fronttiin voi ottaa yhteyden
 const corsOptions = {
-  origin: 'http://localhost:4200', //tähän oikea osoite jos olisi oikealla palvelimella
+  origin: 'https://fir-test-app-8398d.web.app', //http://localhost:4200,tähän oikea osoite jos olisi oikealla palvelimella
   optionSuccessStatus: 200, //jos onnistuu, antaa tämän statuskoodin
 };
 //käytetään
-app.use(cors(corsOptions));
+app.use(cors());
 
 // simple route
 app.get('/', (req, res) => {
